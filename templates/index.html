@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebSite",
+"name":"Wordle Solver Español",
+"url":"https://tudominio.com/",
+"description":"Solucionador gratuito de Wordle en español compatible con palabras de 3 a 7 letras, tildes y modo científico.",
+"inLanguage":"es"
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+
+{
+"@type":"Question",
+"name":"¿Cómo funciona Wordle Solver Español?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"Introduce las letras verdes, amarillas y grises obtenidas en Wordle. El solucionador aplica exactamente las reglas del juego para mostrar únicamente las palabras compatibles."
+}
+},
+
+{
+"@type":"Question",
+"name":"¿El solucionador admite palabras con tilde?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"Sí. Puedes buscar únicamente palabras con tilde o utilizar el modo Todas, donde las tildes se ignoran para adaptarse al modo científico de Wordle."
+}
+},
+
+{
+"@type":"Question",
+"name":"¿Qué longitudes de palabra admite?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"El solucionador admite palabras españolas de 3, 4, 5, 6 y 7 letras."
+}
+},
+
+{
+"@type":"Question",
+"name":"¿Cuántas palabras contiene el diccionario?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"El diccionario contiene más de 350000 palabras españolas incluyendo vocabulario general, formas con tilde y variantes utilizadas por Wordle."
+}
+},
+
+{
+"@type":"Question",
+"name":"¿Es gratuito?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"Sí. Wordle Solver Español puede utilizarse gratuitamente desde cualquier navegador."
+}
+}
+
+]
+}
+</script>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Wordle Solver Español | Solucionador de Wordle en Español
+</title>
+
+<meta
+name="description"
+content="Wordle Solver Español gratuito. Encuentra la solución de Wordle en español para palabras de 3 a 7 letras. Compatible con modo científico, palabras con tilde y un diccionario de más de 350 000 palabras."
+>
+
+<meta
+name="keywords"
+content="wordle solver español, solucionador de wordle, wordle español, wordle solver tildes, wordle científico, palabras con tilde, resolver wordle"
+>
+
+<meta
+name="author"
+content="Wordle Solver Español"
+>
+
+<meta
+name="robots"
+content="index,follow"
+>
+
+<meta property="og:type" content="website">
+
+<meta property="og:title"
+content="Wordle Solver Español">
+
+<meta property="og:description"
+content="Encuentra todas las soluciones posibles de Wordle en español. Compatible con Modo tildes">
+
+<meta property="og:image"
+content="https://tudominio.com/static/logo.png">
+
+<meta property="og:url"
+content="https://tudominio.com/">
+
+<meta property="og:locale"
+content="es_ES">
+
+<meta
+name="twitter:card"
+content="summary_large_image">
+
+<meta
+name="twitter:title"
+content="Wordle Solver Español">
+
+<meta
+name="twitter:description"
+content="Solucionador gratuito de Wordle en español con soporte para tildes y modo científico.">
+
+<meta
+name="twitter:image"
+content="https://tudominio.com/static/logo.png">
+
+<link
+rel="canonical"
+href="https://tudominio.com/"
+>
+
+<link
+rel="stylesheet"
+href="/static/style.css"
+>
+
+<link rel="icon" href="/static/favicon.ico">
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<h1>
+🟩 Wordle Solver Español
+</h1>
+
+
+<p class="subtitle">
+
+Encuentra la solución de Wordle en Español / La Palabra del Día para palabras de 3, 4, 5, 6 y 7 letras.
+Compatible con modo Normal, modo con Tilde, modo Científico y un diccionario de más de 350 000 palabras.
+
+</p>
+
+
+
+
+<!-- ===========================
+CONFIGURACIÓN
+=========================== -->
+
+
+<div class="panel">
+
+
+<h2>
+Configuración
+</h2>
+
+
+
+<label>
+Longitud:
+</label>
+
+
+<select id="length"
+onchange="createBoard()">
+
+
+
+<option value="3">3 letras</option>
+
+<option value="4">4 letras</option>
+
+<option value="5">5 letras</option>
+
+<option value="6">6 letras</option>
+
+<option value="7" selected>7 letras</option>
+
+
+
+</select>
+
+
+
+
+<br><br>
+
+
+
+
+
+
+
+
+<label>
+Tildes:
+</label>
+
+
+<select id="accent">
+
+
+<option value="all">
+
+Todas
+
+</option>
+
+
+<option value="accent">
+
+Solo con tilde
+
+</option>
+
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ===========================
+TABLERO
+=========================== -->
+
+
+<h2>
+Nuevo intento
+</h2>
+
+
+
+<div id="board">
+
+</div>
+
+
+
+<p>
+Haz clic en una casilla para cambiar:
+
+</p>
+
+
+<p>
+
+⬜ Gris
+
+🟨 Amarillo
+
+🟩 Verde
+
+</p>
+
+
+
+
+
+<button onclick="addAttempt()">
+
+Agregar intento
+
+</button>
+
+
+
+
+<button onclick="clearBoard()">
+
+Limpiar intento
+
+</button>
+
+
+
+
+
+
+
+<!-- ===========================
+INTENTOS
+=========================== -->
+
+<h2>
+
+Intentos realizados
+
+</h2>
+
+
+<div id="attempts">
+
+</div>
+
+
+
+
+<button class="solve"
+onclick="solveWordle()">
+
+🔎 Buscar soluciones
+
+</button>
+
+
+
+
+
+<!-- ===========================
+RESULTADOS
+=========================== -->
+
+<hr>
+
+
+
+<h2>
+Resultados
+</h2>
+
+<label for="sortResults">
+Ordenar por:
+</label>
+
+<select id="sortResults">
+    <option value="stars" selected>
+        ⭐ Frecuencia
+    </option>
+
+    <option value="alphabet">
+        🔤 Alfabético
+    </option>
+</select>
+
+<br><br>
+
+<div id="stats"></div>
+
+<div class="results-controls">
+
+<label>
+Ordenar:
+<select id="sortResults">
+    <option value="stars">⭐ Estrellas</option>
+    <option value="alphabet">🔤 Alfabético</option>
+</select>
+</label>
+
+<label style="margin-left:20px;">
+Mostrar:
+<select id="pageSize">
+    <option value="25">25</option>
+    <option value="50" selected>50</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+</select>
+</label>
+
+</div>
+
+<div id="pageInfo"></div>
+
+<ul id="results"></ul>
+
+<div class="pagination">
+
+<button id="prevPage">
+◀ Anterior
+</button>
+
+<button id="nextPage">
+Siguiente ▶
+</button>
+
+</div>
+
+<hr>
+
+<section class="seo">
+
+<h2>
+¿Qué es Wordle Solver Español?
+</h2>
+
+<p>
+
+Wordle Solver Español es una herramienta gratuita que ayuda a encontrar la solución del juego Wordle utilizando las pistas obtenidas en cada intento. El solucionador admite palabras de 3 a 7 letras y diferencia palabras con tilde.
+
+</p>
+
+<h2>
+¿Cómo funciona el solucionador?
+</h2>
+
+<p>
+
+Introduce cada intento indicando qué letras son verdes, amarillas o grises. El algoritmo aplicará exactamente las reglas de Wordle para mostrar únicamente las palabras compatibles ordenadas por frecuencia de uso o alfabéticamente.
+
+</p>
+
+</section>
+
+<section class="seo">
+
+<h2>
+
+Preguntas frecuentes
+
+</h2>
+
+<h3>
+
+¿Es gratuito?
+
+</h3>
+
+<p>
+
+Sí. Wordle Solver Español es completamente gratuito.
+
+</p>
+
+<h3>
+
+¿Funciona con palabras de siete letras?
+
+</h3>
+
+<p>
+
+Sí. El solucionador admite palabras de 3, 4, 5, 6 y 7 letras.
+
+</p>
+
+<h3>
+
+¿Respeta las letras repetidas?
+
+</h3>
+
+<p>
+
+Sí. El algoritmo reproduce el comportamiento oficial de Wordle.
+
+</p>
+
+<h3>
+
+¿Admite palabras con tilde?
+
+</h3>
+
+<p>
+
+Sí. Además dispone de un modo que ignora las tildes para partidas donde estas no se utilizan.
+
+</p>
+
+<hr style="margin:50px 0 30px 0;">
+
+<p class="contact">
+
+¿Tienes alguna duda, comentario, sugerencia o encontraste un error en el solucionador? Estaré encantado de leer tu mensaje. Puedes escribirme a:
+
+<br><br>
+
+<a href="mailto:wordstilde@gmail.com">
+wordstilde@gmail.com
+</a>
+
+</p>
+
+</section>
+
+</div>
+
+
+
+<script src="/static/script.js">
+
+</script>
+
+
+</body>
+
+
+</html>
+
+
